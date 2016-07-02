@@ -46,15 +46,3 @@ class RancherOSUtil(DefaultOSUtil):
     def restart_if(self, ifname, retries=3, wait=5):
         logger.warn("Skipped restart_if")
         pass
-
-    def useradd(self, username, expiration=None):
-        logger.warn("Skipped useradd")
-        pass
-
-    def chpasswd(self, username, password, crypt_id=6, salt_len=10):
-        logger.warn("Skipped chpasswd")
-        pass
-
-    def eject_dvd(self, chk_err=True):
-        logger.warn("Skipped eject dvd")
-        pass
