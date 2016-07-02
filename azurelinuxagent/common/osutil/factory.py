@@ -22,6 +22,7 @@ from azurelinuxagent.common.version import DISTRO_NAME, DISTRO_VERSION, \
 
 from .default import DefaultOSUtil
 from .coreos import CoreOSUtil
+from .rancheros import RancherOSUtil
 from .debian import DebianOSUtil
 from .freebsd import FreeBSDOSUtil
 from .redhat import RedhatOSUtil, Redhat6xOSUtil
@@ -44,6 +45,8 @@ def get_osutil(distro_name=DISTRO_NAME, distro_version=DISTRO_VERSION,
             return UbuntuOSUtil()
     if distro_name == "coreos":
         return CoreOSUtil()
+    if distro_name == "rancheros":
+        return RancherOSUtil()
     if distro_name == "suse":
         if distro_full_name=='SUSE Linux Enterprise Server' and \
            Version(distro_version) < Version('12') or \
@@ -66,4 +69,3 @@ def get_osutil(distro_name=DISTRO_NAME, distro_version=DISTRO_VERSION,
         logger.warn("Unable to load distro implemetation for {0}.", distro_name)
         logger.warn("Use default distro implemetation instead.")
         return DefaultOSUtil()
-

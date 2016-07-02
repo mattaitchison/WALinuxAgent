@@ -21,12 +21,14 @@ from azurelinuxagent.common.version import DISTRO_NAME, DISTRO_VERSION, \
                                      DISTRO_FULL_NAME
 from .default import ProvisionHandler
 from .ubuntu import UbuntuProvisionHandler
+from .rancheros import RancherOSProvisionHandler
 
-def get_provision_handler(distro_name=DISTRO_NAME, 
+def get_provision_handler(distro_name=DISTRO_NAME,
                             distro_version=DISTRO_VERSION,
                             distro_full_name=DISTRO_FULL_NAME):
     if distro_name == "ubuntu":
         return UbuntuProvisionHandler()
+    if distro_name == "rancheros":
+        return RancherOSProvisionHandler()
 
     return ProvisionHandler()
-

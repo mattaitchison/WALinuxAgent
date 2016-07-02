@@ -63,7 +63,7 @@ class DefaultOSUtil(object):
 
     def is_sys_user(self, username):
         """
-        Check whether use is a system user. 
+        Check whether use is a system user.
         If reset sys user is allowed in conf, return False
         Otherwise, check whether UID is less than UID_MIN
         """

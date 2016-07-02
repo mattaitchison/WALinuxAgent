@@ -20,6 +20,7 @@ import re
 import platform
 import sys
 import azurelinuxagent.common.utils.fileutil as fileutil
+import azurelinuxagent.common.utils.shellutil as shellutil
 from azurelinuxagent.common.future import ustr
 
 
@@ -39,6 +40,14 @@ def get_distro():
     if os.path.exists("/etc/oracle-release"):
         osinfo[2] = "oracle"
         osinfo[3] = "Oracle Linux"
+
+    if 'DISTRO_NAME' in os.environ:
+        osinfo[0] = os.environ['DISTRO_NAME']
+        # FIXME: can't guarantee distro is ros
+        ret, osinfo[1] = shellutil.run_get_output("ros os version")
+        osinfo[2] = osinfo[0]
+        osinfo[3] = osinfo[0]
+
 
     # Remove trailing whitespace and quote in distro name
     osinfo[0] = osinfo[0].strip('"').strip(' ').lower()
